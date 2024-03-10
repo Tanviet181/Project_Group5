@@ -1,0 +1,87 @@
+﻿@using Newtonsoft.Json
+@using Project_Travel.Areas.Client.Models
+@model Project_Travel.Areas.Client.Models.Product
+
+@inject IHttpContextAccessor _accessor;
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Areas/Client/Views/Shared/_Layout2.cshtml";
+
+    StoreContext context = new StoreContext();
+
+    var list = context.Products.ToList();
+
+    var fullCart = JsonConvert.DeserializeObject<CartDTO>(_accessor.HttpContext?.Session.GetString("list_cart") ?? "");
+
+}
+
+
+
+<div class="container">
+    <div class="title1 mt-5 text_align_center font-poppins">
+        <h3>Check out</h3>
+    </div>
+    @if (fullCart != null && fullCart.CartDetails != null)
+    {
+        <table class="table">
+            <tr>
+                <th>Tên người mua hàng</th>
+                <th>Số điện thoại</th>
+                <th>Hình thức thanh toán</th>
+                <th>Email</th>
+
+
+            </tr>
+
+            @foreach (var item in fullCart.CartDetails)
+            {
+
+                <tr>
+                    <td> @item.ProductId</td>
+                    <td> @item.Name</td>
+                    <td> @item.Price.ToString("#,##0") VNĐ</td>
+
+                </tr>
+            }
+
+        </table>
+
+        <div style="text-align:center">
+            <h1>Tổng tiền</h1>
+            <p>@fullCart.TotalPay.ToString("#,##0")</p>
+            <button onclick="checkout()">Thanh toán</button>
+        </div>
+    }
+    else
+    {
+        <h1>Giỏ hàng trống</h1>
+    }
+
+</div>
+
+
+<script>
+    let bigImg = document.querySelector('.big-img img');
+    function showImg(pic) {
+        bigImg.src = pic;
+    }
+
+    function AddToCart(_productId, _fullName, _price) {
+        const data = {
+            ProductId: _productId,
+            Name: _fullName,
+            Price: _price
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/Cart/AddToCart",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (data) {
+                /*window.location.href ='/Client/Shop/Index'*/
+                console.log("davao")
+            },
+            error: function (xhr, status, error) { }
+        });
+    }
+</script>

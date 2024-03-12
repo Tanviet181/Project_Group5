@@ -23,7 +23,7 @@
             <h2>@item.Name</h2>
             <h4>@item.Description</h4>
             <div class="prices text-center">
-                <strong class="text-danger">@item.Price</strong>
+                    <strong class="text-danger">@item.Price.ToString("#,##0")</strong>
                 <del>800.000</del>
                 <div class="actions text-center m-2">
                     <a href="@Url.Action("Index", "ChitietSanpham" ,new {id=item.Id})" class="btn btn-danger">View More</a>
@@ -47,7 +47,7 @@
             <h2>@item.Name</h2>
             <h4>@item.Description</h4>
             <div class="prices text-center">
-                <strong class="text-danger">@item.Price</strong>
+                    <strong class="text-danger">@item.Price.ToString("#,##0")</strong>
                 <del>800.000</del>
                 <div class="actions text-center m-2">
                         <a href="@Url.Action("Index1", "ChitietSanpham" ,new {id=item.Id})" class="btn btn-danger">View More</a>

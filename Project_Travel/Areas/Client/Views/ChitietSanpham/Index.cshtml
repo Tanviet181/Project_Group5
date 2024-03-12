@@ -64,7 +64,7 @@
                     </div>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <div class="price text-danger">@Model.Price</div>
+                <div class="price text-danger">@Model.Price.ToString("#,##0")</div>
                 <div class="delprice"><del>@Model.Discount</del></div>
 
                 @*    <div class="Datebook">
@@ -144,7 +144,7 @@
                     <h2>@item.Name</h2>
                     <h4>@item.Description</h4>
                     <div class="prices text-center">
-                        <strong class="text-danger">@item.Price</strong>
+                        <strong class="text-danger">@item.Price.ToString("#,##0")</strong>
                         <del>800.000</del>
                         <div class="actions text-center m-2">
                             <a href="@Url.Action("Index", "Chitietsanpham" ,new {id=item.Id})" class="btn btn-danger">View More</a>

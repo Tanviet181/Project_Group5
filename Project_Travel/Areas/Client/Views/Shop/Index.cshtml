@@ -21,7 +21,7 @@
     </div>
 @if (fullCart != null && fullCart.CartDetails != null)
 {
-    <table class="table">
+    <table class="table font-poppins">
         <tr>
             <th>Mã sản phẩm</th>
             <th>Tên Sản phẩm</th>
@@ -45,8 +45,12 @@
 
     <div style="text-align:center">
         <h1>Tổng tiền</h1>
-        <p>@fullCart.TotalPay.ToString("#,##0")</p>
-        <button onclick="checkout()">Thanh toán</button>
+        <p style="color:red">@fullCart.TotalPay.ToString("#,##0")</p>
+            <div class="btn-box text_align_center">
+            <button class="btn btn-danger" onclick="checkout()">Thanh toán</button>               
+            </div>
+
+
     </div>
 }
 else

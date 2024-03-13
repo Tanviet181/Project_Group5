@@ -44,14 +44,17 @@
     </table>
 
     <div style="text-align:center">
-        <h1>Tổng tiền</h1>
-        <p style="color:red">@fullCart.TotalPay.ToString("#,##0")</p>
+        <h1 style="font-family:Roboto">Tổng tiền</h1>
+        </div>
+            <div class="totalpay mt-3 text_align_center">
+        <b style="color:red"> @fullCart.TotalPay.ToString("#,##0")</b>
+        </div>
             <div class="btn-box text_align_center">
             <button class="btn btn-danger" onclick="checkout()">Thanh toán</button>               
             </div>
 
 
-    </div>
+    
 }
 else
 {
